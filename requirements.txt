@@ -1,0 +1,15 @@
+# Core
+pymupdf>=1.24
+numpy>=1.26
+faiss-cpu>=1.8
+scipy>=1.11            # sparse BM25 (own implementation, persisted)
+fastembed>=0.4          # ONNX embeddings + optional cross-encoder reranker, CPU only, no torch
+openai>=1.40            # OpenAI-compatible client (NVIDIA NIM / build.nvidia.com by default)
+python-dotenv>=1.0
+# UI / analytics
+streamlit>=1.38
+plotly>=5.22
+pandas>=2.1
+# Tests
+pytest>=8.0
+psutil>=5.9            # optional: memory measurements in the benchmark

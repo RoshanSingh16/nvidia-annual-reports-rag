@@ -1,0 +1,4 @@
+# TEMPLATE ONLY - these rows are placeholders, not real labels. Copy to eval/questions.jsonl and fill in from the PDFs.
+# relevant = [[pdf file name, 1-based page number], ...] where the answer is actually printed.
+{"id": "ex1", "question": "REPLACE: a question whose answer is on a specific page", "relevant": [["YourFile.pdf", 1]], "answerable": true, "answer_contains": ["REPLACE exact figure"]}
+{"id": "ex2", "question": "REPLACE: a question the filings cannot answer (e.g. a competitor's private data)", "relevant": [], "answerable": false}

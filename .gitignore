@@ -1,0 +1,7 @@
+.env
+data/index/
+data/logs/
+data/reports/
+__pycache__/
+.pytest_cache/
+*.pyc
