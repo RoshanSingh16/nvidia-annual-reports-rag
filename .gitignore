@@ -1,7 +1,8 @@
 .env
-data/index/
+.streamlit/secrets.toml
 data/logs/
 data/reports/
 __pycache__/
 .pytest_cache/
 *.pyc
+.DS_Store
