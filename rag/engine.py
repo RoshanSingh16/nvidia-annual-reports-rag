@@ -37,7 +37,7 @@ class Engine:
         return self.retriever.search(question, **kw)
 
     def answer_stream(self, question: str, r: Retrieval, detailed: bool = False,
-                      history: Optional[list[dict]] = None, gen: Optional[Generation] = None) -> Iterator[str]:
+                    history: Optional[list[dict]] = None, gen: Optional[Generation] = None) -> Iterator[str]:
         gen = gen if gen is not None else Generation()
         if not self.evidence_ok(r):
             gen.abstained = True

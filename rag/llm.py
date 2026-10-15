@@ -87,12 +87,12 @@ class LLM:
 
     def _get_client(self):
         if not self.available:
-            raise LLMUnavailable("No API key configured. Set NVIDIA_API_KEY in .env to enable answer generation.")
+            raise LLMUnavailable("No API key configured. Set LLM_API_KEY in .env to enable answer generation.")
         if self._client is None:
             from openai import OpenAI
 
             self._client = OpenAI(base_url=self.s.llm_base_url, api_key=self.s.llm_api_key,
-                                  timeout=self.s.llm_timeout_s, max_retries=self.s.llm_max_retries)
+                                timeout=self.s.llm_timeout_s, max_retries=self.s.llm_max_retries)
         return self._client
 
     def _messages(self, question: str, hits: list[Hit], detailed: bool, history: Optional[list[dict]]):
@@ -106,7 +106,7 @@ class LLM:
         return msgs, n
 
     def stream(self, question: str, hits: list[Hit], detailed: bool = False,
-               history: Optional[list[dict]] = None, out: Optional[Generation] = None) -> Iterator[str]:
+                history: Optional[list[dict]] = None, out: Optional[Generation] = None) -> Iterator[str]:
         """Yield text deltas; fills `out` (usage, latency, citations) when exhausted."""
         gen = out if out is not None else Generation()
         client = self._get_client()
@@ -142,7 +142,7 @@ class LLM:
             if "Timeout" in name or "Connection" in name:
                 raise LLMError("The LLM API timed out or is unreachable. Retrieval results are still shown below.") from exc
             if "Authentication" in name or "PermissionDenied" in name:
-                raise LLMError("The API key was rejected. Check NVIDIA_API_KEY in .env.") from exc
+                raise LLMError("The API key was rejected. Check LLM_API_KEY in .env.") from exc
             raise LLMError(f"LLM request failed ({name}): {exc}") from exc
         finally:
             gen.latency_ms = (time.perf_counter() - t0) * 1e3

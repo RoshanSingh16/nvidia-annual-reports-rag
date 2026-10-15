@@ -90,7 +90,7 @@ def load_settings(**overrides) -> Settings:
         workers=_get("WORKERS", 4, int),
         llm_base_url=_get("LLM_BASE_URL", "https://integrate.api.nvidia.com/v1"),
         llm_model=_get("LLM_MODEL", "meta/llama-3.1-70b-instruct"),
-        llm_api_key=_get("NVIDIA_API_KEY", _get("LLM_API_KEY", "")),
+        llm_api_key=_get("LLM_API_KEY", _get("NVIDIA_API_KEY", "")),
         llm_timeout_s=_get("LLM_TIMEOUT_S", 60.0, float),
         llm_max_retries=_get("LLM_MAX_RETRIES", 3, int),
         llm_reasoning_effort=_get("LLM_REASONING_EFFORT", ""),
