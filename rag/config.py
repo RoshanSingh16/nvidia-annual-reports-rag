@@ -14,10 +14,21 @@ load_dotenv(ROOT / ".env")
 
 def _get(name: str, default, cast=str):
     raw = os.getenv(name)
+
+    # If not set in environment, try Streamlit Cloud Secrets
+    if raw is None or raw == "":
+        try:
+            import streamlit as st
+            raw = st.secrets.get(name)
+        except Exception:
+            raw = None
+
     if raw is None or raw == "":
         return default
+
     if cast is bool:
-        return raw.strip().lower() in {"1", "true", "yes", "on"}
+        return str(raw).strip().lower() in {"1", "true", "yes", "on"}
+
     return cast(raw)
 
 
